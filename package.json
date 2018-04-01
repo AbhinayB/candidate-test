@@ -1,0 +1,19 @@
+{
+  "name": "turco",
+  "version": "1.0.0",
+  "description": "Project developed by Abhinay Bali for Turcopersian",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "mongoose": "*",
+    "package.json": "^2.0.1"
+  },
+  "author": "Abhinay Bali",
+  "license": "ISC"
+}
