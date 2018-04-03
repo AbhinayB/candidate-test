@@ -19,6 +19,8 @@ mongoose.connection.on('error', (err) => {
 
 const app = express();
 
+app.use("/public", express.static(path.join(__dirname, '/public_files')));
+
 const routs = require('./node/routs');
 
 const port = 9000;

@@ -1,0 +1,69 @@
+
+<div>
+<div class="container" [hidden]="isformhidden">
+  <br>
+    <form  (ngSubmit)="addingRug()" #rugForm="ngForm" >
+      <div class="form-group">
+        <label for="name">Rug Name</label>
+        <input type="text" class="form-control" id="name" name="name" ngModel required [(ngModel)]="rugmodel.name">
+      </div>
+      <div class="form-group">
+        <label for="design">Rug Design</label>
+        <input type="text" class="form-control" id="design" name="design" ngModel required [(ngModel)]="rugmodel.design">
+      </div>
+      <div class="form-group">
+        <label for="pattern">Rug Pattern</label>
+        <input type="text" class="form-control" id="pattern" name="pattern" ngModel required [(ngModel)]="rugmodel.pattern">
+      </div>
+      <div class="form-group">
+        <label for="color">Rug Color</label>
+        <input type="text" class="form-control" id="color" name="color" ngModel required  [(ngModel)]="rugmodel.color">
+      </div>
+      <div class="form-group">
+        <label for="style">Rug Style</label>
+        <input type="text" class="form-control" id="style" name="style" ngModel required [(ngModel)]="rugmodel.style">
+      </div>
+      <div class="form-group">
+        <label for="country">Alter Country</label>
+        <input type="text" class="form-control" id="country" name="country" ngModel required [(ngModel)]="rugmodel.country">
+      </div>
+      <div class="form-group">
+        <label for="image">Alter Image</label>
+        <input type="file" #fileinput (change)="onChange($event)" class="form-control" id="image" name="image" ngModel required [(ngModel)]="rugmodel.image">
+      </div>
+      <button type="button" (click)="rugForm.reset()" class="btn btn-success">Reset Details</button>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+<div class="container" [hidden]="!isformhidden">
+  <div>
+    <label for="name1">Rug Name</label>
+    <h5 id="name1" name="name1" >{{rugmodel.name}}</h5>
+  </div>
+  <div >
+    <label for="design1">Rug Design</label>
+    <h5  id="design1" name="design1" >{{rugmodel.design}}</h5>
+  </div>
+  <div >
+    <label for="pattern1">Rug Pattern</label>
+    <h5 id="pattern1" name="pattern1" >{{rugmodel.pattern}}</h5>
+  </div>
+  <div >
+    <label for="color1">Rug Color</label>
+    <h5 id="color1" name="color1" >{{rugmodel.color}}</h5>
+  </div>
+  <div >
+    <label for="style1">Rug Style</label>
+    <h5 id="style1" name="style1" >{{rugmodel.style}}</h5>
+  </div>
+  <div>
+    <label for="country1">Country</label>
+  <h5 id="country1" name="country1" >{{rugmodel.color}}</h5>
+  </div>
+  <div>
+    <label for="image1">Image</label>
+    <h5 id="image1" name="image1" >{{filename}}</h5>
+  </div>
+  <button type="button" (click)="rugForm.reset(); isformhidden=false" class="btn btn-success">Add another</button>
+</div>
+</div>

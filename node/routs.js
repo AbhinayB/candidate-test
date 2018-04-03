@@ -2,22 +2,39 @@ const express = require('express');
 const router = express.Router();
 const config = require('../config/database');
 const Rug = require('../node/rug');
-
+crypto = require('crypto');
 ////design,pattern,color,style,country,image
+let multer  = require('multer');
+var path = require('path')
+
+var storage = multer.diskStorage({
+  destination: './public_files/',
+  filename: function (req, file, cb) {
+    crypto.pseudoRandomBytes(16, function (err, raw) {
+      if (err) return cb(err)
+
+      cb(null, raw.toString('hex') + path.extname(file.originalname))
+    })
+  }
+})
+
+var upload = multer({ storage: storage })
 
 router.get('/', (req, res) => {
   res.send('<h3>404 No URL Found</h3>');
 });
 
 
-router.post('/addrug', (req, res, next) => {
+router.post('/addrug',upload.single('file'), (req, res, next) => {
+
   let newRug = new Rug({
+    name: req.body.name,
     design: req.body.design,
     pattern: req.body.pattern,
     color: req.body.color,
     style: req.body.style,
     country: req.body.country,
-    image: req.body.image
+    image: req.file.filename
   });
 
   Rug.addRug(newRug, (err, rug) => {
@@ -44,6 +61,7 @@ router.delete('/deleterug', (req, res, next) => {
           success: true,
           rug: {
             id: rug._id,
+            name: rug.name,
             design: rug.design,
             pattern: rug.pattern,
             color: rug.color,
@@ -72,6 +90,7 @@ router.post('/getrug', (req, res, next) => {
           success: true,
           rug: {
             id: rug._id,
+            name: rug.name,
             design: rug.design,
             pattern: rug.pattern,
             color: rug.color,

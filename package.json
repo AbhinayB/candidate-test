@@ -12,7 +12,8 @@
     "cors": "*",
     "express": "*",
     "mongoose": "*",
-    "package.json": "^2.0.1"
+    "package.json": "^2.0.1",
+    ""
   },
   "author": "Abhinay Bali",
   "license": "ISC"

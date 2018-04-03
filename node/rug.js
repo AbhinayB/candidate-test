@@ -4,8 +4,13 @@ const config = require('../config/database');
 ////design,pattern,color,style,country,image
 
 const SchemaRug = mongoose.Schema({
+  name: {
+    type: String,
+    required: true
+  },
   design: {
-    type: String
+    type: String,
+    required: true
   },
   pattern: {
     type: String,
