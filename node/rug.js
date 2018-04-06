@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const config = require('../config/database');
-
+var fs = require('fs');
 ////design,pattern,color,style,country,image
 
 const SchemaRug = mongoose.Schema({
@@ -40,6 +40,10 @@ module.exports.getRug = function(id, callback){
   Rug.findById(id, callback);
 }
 
+module.exports.getRugs = function(callback){
+  Rug.find({}, callback);
+}
+
 module.exports.removeRug = function(id, callback){
   Rug.findByIdAndRemove(id, callback);
 }
@@ -47,4 +51,35 @@ module.exports.removeRug = function(id, callback){
 
 module.exports.addRug = function(newRug, callback){
       newRug.save(callback);
+}
+
+
+module.exports.updateRug = function(idvs,newRug, callback){
+  Rug.findOne({_id: idvs}, function (err, doc) {
+    doc.name = newRug.name;
+    doc.design = newRug.design;
+    doc.pattern = newRug.pattern;
+    doc.color = newRug.color;
+    doc.style = newRug.style;
+    doc.country = newRug.country;
+    doc.save(callback);
+  });
+}
+
+module.exports.updateRugwithfile = function(idvs,newRug, callback){
+  Rug.findOne({_id: idvs}, function (err, doc) {
+    fs.unlink('./public_files/'+doc.image, function(error) {
+        if (error) {
+            throw error;
+        }
+    });
+    doc.name = newRug.name;
+    doc.design = newRug.design;
+    doc.pattern = newRug.pattern;
+    doc.color = newRug.color;
+    doc.style = newRug.style;
+    doc.country = newRug.country;
+    doc.image = newRug.image;
+    doc.save(callback);
+  });
 }

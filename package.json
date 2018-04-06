@@ -12,8 +12,8 @@
     "cors": "*",
     "express": "*",
     "mongoose": "*",
-    "package.json": "^2.0.1",
-    ""
+    "multer": "^1.3.0",
+    "package.json": "^2.0.1"
   },
   "author": "Abhinay Bali",
   "license": "ISC"
