@@ -13,6 +13,7 @@ export class AddRugComponent implements OnInit {
   rugmodel = this.rugservice.rugmodel;
   isformhidden=null;
   filename="";
+
   get diagnostic() { return JSON.stringify(this.rugmodel); }
   resetrug()
   {
@@ -23,10 +24,11 @@ export class AddRugComponent implements OnInit {
     if(this.rugservice.validateRugForm())
     {
       this.rugservice.onSubmit().subscribe(data => {
-      console.log(data);
+
       this.isformhidden=true;
       this.flashmessage.show('New Rug Added.', { cssClass: 'alert-success', timeout: 5000 });
       this.rugservice.file=undefined;
+      this.resetrug();
     });
     }
     else{
@@ -39,7 +41,6 @@ export class AddRugComponent implements OnInit {
         let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
         let files: FileList = target.files;
         this.rugservice.file = files[0];
-        console.log(this.rugservice.file );
         this.filename=this.rugservice.file.name;
     }
   constructor(private rugservice:RugserviceService,private flashmessage:FlashMessagesService){

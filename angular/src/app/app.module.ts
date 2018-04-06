@@ -10,20 +10,27 @@ import { FormsModule }   from '@angular/forms';
 import {RugserviceService} from './services/rugservice.service';
 import { HttpModule } from '@angular/http';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { FullpageComponent } from './components/fullpage/fullpage.component';
+import { EditrugComponent } from './components/editrug/editrug.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     RuglistComponent,
     NoUrlFoundComponent,
-    AddRugComponent
+    AddRugComponent,
+    FullpageComponent,
+    EditrugComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     FormsModule,
     RouterModule,
+    NgxPaginationModule,
     HttpModule,
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule
   ],
   providers: [RugserviceService],
   bootstrap: [AppComponent]

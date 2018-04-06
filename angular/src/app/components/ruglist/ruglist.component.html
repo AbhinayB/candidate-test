@@ -1,4 +1,23 @@
-<p>
-  ruglist works!
-  cbvcgcxvghcxhccx
-</p>
+<div class="container">
+    <div class="row">
+        <div  *ngFor="let item of rugitems; let i = index" class="col-md-6">
+            <div style="background-color: #e7e7e7;padding-top:20px;border-radius: 15px;padding-bottom:20px" class="media">
+              <div class="media-left">
+                  <img id="{{item._id}}" (click)="fullpage($event)" class="media-object" src="http://localhost:9000/public/{{item.image}}" alt="...">
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading">{{item.name}}</h4>
+                <p><b>Design:</b>{{item.design}}</p>
+                <p><b>Pattern:</b>{{item.pattern}}</p>
+                <button class="btn btn-xs btn-warning">
+         <span id="{{item._id}}" (click)="deleteItem($event)" class="glyphicon glyphicon-trash"></span>
+       </button>
+       <button class="btn btn-xs btn-warning">
+<span id="{{item._id}}" (click)="editItem($event)" class="glyphicon glyphicon-edit"></span>
+</button>
+              </div>
+            </div>
+        </div>
+
+</div>
+</div>

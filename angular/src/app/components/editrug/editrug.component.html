@@ -1,0 +1,40 @@
+
+
+<div class="container" >
+  <br>
+    <form  (ngSubmit)="updateRug()" #rugForm="ngForm" >
+      <div class="form-group">
+        <label for="name">Rug Name</label>
+        <input type="text" class="form-control" id="name" name="name" ngModel required [(ngModel)]="rugmodel.name">
+      </div>
+      <div class="form-group">
+        <label for="design">Rug Design</label>
+        <input type="text" class="form-control" id="design" name="design" ngModel required [(ngModel)]="rugmodel.design">
+      </div>
+      <div class="form-group">
+        <label for="pattern">Rug Pattern</label>
+        <input type="text" class="form-control" id="pattern" name="pattern" ngModel required [(ngModel)]="rugmodel.pattern">
+      </div>
+      <div class="form-group">
+        <label for="color">Rug Color</label>
+        <input type="text" class="form-control" id="color" name="color" ngModel required  [(ngModel)]="rugmodel.color">
+      </div>
+      <div class="form-group">
+        <label for="style">Rug Style</label>
+        <input type="text" class="form-control" id="style" name="style" ngModel required [(ngModel)]="rugmodel.style">
+      </div>
+      <div class="form-group">
+        <label for="country">Alter Country</label>
+        <input type="text" class="form-control" id="country" name="country" ngModel required [(ngModel)]="rugmodel.country">
+      </div>
+      <div class="form-group">
+        <label for="country">Select Image</label>
+        <img class="imgw" (click)="clickonimage()"  style="height:200px" [src]="url" id="file" name="file" ngModel required [(ngModel)]="rugmodel.image">
+      </div>
+      <div class="form-group" [hidden]="true">
+        <label for="image">Alter Image</label>
+        <input class="imgh" type="file" #fileinput (change)="readUrl($event)" class="form-control" id="image" name="image" ngModel required [(ngModel)]="rugmodel.image">
+      </div>
+      <button type="submit" class="btn btn-success">Update</button>
+    </form>
+</div>

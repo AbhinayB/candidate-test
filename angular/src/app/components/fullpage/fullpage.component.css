@@ -1,14 +1,17 @@
-
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+.attr2{
+  padding: 10px;
+}
 img
 {
   position: relative;
-  height:20%;
+
 padding:1px;
-   border:1px solid #021a40;
+   border:1px solid;
    border-radius: 15px;
+
  }
-img:hover
-{
-cursor: pointer; 
+span{
+  font-size: 18px;
+  font-weight: bold;
 }

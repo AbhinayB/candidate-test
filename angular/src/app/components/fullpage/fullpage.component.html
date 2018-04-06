@@ -1,0 +1,30 @@
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="container">
+        	<div class="row">
+               <div class="col-xs-6 item-photo">
+                    <img style="max-width:100%;" src="{{expressuri}}public/{{this.data.image}}" />
+                </div>
+                <div class="col-xs-5" style="border:0px solid gray">
+                    <h3>Name: {{this.data.name}}</h3>
+                    <div class="section">
+                        <div>
+                          <div class="attr2"><span>Design: </span>{{this.data.design}}</div>
+                          <div class="attr2"><span>Pattern: </span>{{this.data.pattern}}</div>
+                            <div class="attr2"><span>Color: </span>{{this.data.color}}</div>
+                            <div class="attr2"><span>Style: </span>{{this.data.style}}</div>
+                            <div class="attr2"><span>Country: </span>{{this.data.country}}</div>
+                        </div>
+                    </div>
+                    <div class="section" style="padding-bottom:20px;padding-top:20px;">
+                        <button id="{{id}}" (click)="editItem($event)" class="btn btn-success"><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
