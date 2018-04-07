@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row">
         <div  *ngFor="let item of rugitems; let i = index" class="col-md-6">
-            <div style="background-color: #e7e7e7;padding-top:20px;border-radius: 15px;padding-bottom:20px" class="media">
+            <div style="border:1px solid #021a40;background-color: #e7e7e7;padding-top:20px;border-radius: 15px;padding-bottom:20px" class="media">
               <div class="media-left">
-                  <img id="{{item._id}}" (click)="fullpage($event)" class="media-object" src="http://localhost:9000/public/{{item.image}}" alt="...">
+                  <img id="{{item._id}}" (click)="fullpage($event)" class="media-object" src="{{menuitem}}{{item.image}}" alt="...">
               </div>
               <div class="media-body">
                 <h4 class="media-heading">{{item.name}}</h4>
@@ -20,4 +20,11 @@
         </div>
 
 </div>
+</div>
+<div id="footer" align="center">
+<nav aria-label="...">
+  <ul class="pagination pagination-lg">
+    <li *ngFor="let number of numbers" class="page-item"> <a id="{{number}}" (click)="getpagedata($event)" class="page-link" >{{number}}</a> </li>
+  </ul>
+</nav>
 </div>

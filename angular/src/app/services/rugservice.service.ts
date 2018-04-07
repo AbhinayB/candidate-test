@@ -11,7 +11,7 @@ export class RugserviceService {
   real_id=""
   issubmitted = false;
   rugmodel = new RugClass("","","","","","","");
-
+  pagenumber=1;
   resetrug() {
     this.rugmodel = new RugClass("","","","","","","");
   }

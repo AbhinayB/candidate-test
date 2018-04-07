@@ -29,7 +29,7 @@
       </div>
       <div class="form-group">
         <label for="image">Alter Image</label>
-        <input type="file" #fileinput (change)="onChange($event)" class="form-control" id="image" name="image" ngModel required [(ngModel)]="rugmodel.image">
+        <input type="file" #fileinput (change)="onChange($event)" class="form-control" accept="image/*" id="image" name="image" ngModel required [(ngModel)]="rugmodel.image">
       </div>
       <button type="button" (click)="rugForm.reset()" class="btn btn-success">Reset Details</button>
       <button type="submit" class="btn btn-success">Submit</button>
