@@ -44,6 +44,11 @@ module.exports.getRugs = function(callback){
   Rug.find({}, callback);
 }
 
+module.exports.getpageRugs = function(pagenum,callback){
+  Rug.find().limit(4)
+    .skip(4 * (pagenum-1)).exec(callback);
+}
+
 module.exports.removeRug = function(id, callback){
   Rug.findByIdAndRemove(id, callback);
 }
@@ -53,6 +58,10 @@ module.exports.addRug = function(newRug, callback){
       newRug.save(callback);
 }
 
+module.exports.totalRugs = function(callback){
+
+  Rug.count({}, callback);
+}
 
 module.exports.updateRug = function(idvs,newRug, callback){
   Rug.findOne({_id: idvs}, function (err, doc) {
@@ -66,9 +75,16 @@ module.exports.updateRug = function(idvs,newRug, callback){
   });
 }
 
+
+
 module.exports.updateRugwithfile = function(idvs,newRug, callback){
   Rug.findOne({_id: idvs}, function (err, doc) {
     fs.unlink('./public_files/'+doc.image, function(error) {
+        if (error) {
+            throw error;
+        }
+    });
+    fs.unlink('./public_files/compress/'+doc.image, function(error) {
         if (error) {
             throw error;
         }

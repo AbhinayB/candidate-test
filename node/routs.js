@@ -6,6 +6,7 @@ crypto = require('crypto');
 let multer  = require('multer');
 var path = require('path')
 var fs = require('fs');
+var Jimp = require("jimp");
 var storage = multer.diskStorage({
   destination: './public_files/',
   filename: function (req, file, cb) {
@@ -17,7 +18,8 @@ var storage = multer.diskStorage({
   }
 })
 
-var upload = multer({ storage: storage })
+
+var upload = multer({ storage: storage });
 
 router.get('/', (req, res) => {
   res.send('<h3>404 No URL Found</h3>');
@@ -41,8 +43,15 @@ router.post('/addrug',upload.single('file'), (req, res, next) => {
       res.json({success: false, msg:'Failed to add Rug'});
     } else {
       res.json({success: true, msg:'Rug added'});
+
+Jimp.read("./public_files/"+rug.image, function (err, lenna) {
+    if (err) throw err;
+    lenna.resize(250,Jimp.AUTO)
+         .quality(100)
+         .write("./public_files/compress/"+rug.image);
+});
     }
-  });
+      });
 });
 
 router.post('/updateRugwithFile',upload.single('file'), (req, res, next) => {
@@ -64,6 +73,12 @@ var idvs=req.body.id;
     } else {
       res.json({success: true, msg:'Rug Updated'});
     }
+    Jimp.read("./public_files/"+rug.image, function (err, lenna) {
+        if (err) throw err;
+        lenna.resize(250,Jimp.AUTO)
+             .quality(100)
+             .write("./public_files/compress/"+rug.image);
+    });
   });
 });
 router.post('/updateRugwithoutFile', (req, res, next) => {
@@ -86,6 +101,36 @@ var idvs=req.body.id;
     }
   });
 });
+router.post('/rugcount', (req, res, next) => {
+
+  Rug.totalRugs((err, count) => {
+    if(err){
+      res.json({success: false, msg:'No rugs or table'});
+    } else {
+      res.json({
+        success: true,
+        count: count
+      });
+    }
+  });
+});
+//----------------------
+router.post('/getpagerugs', (req, res, next) => {
+  Rug.getpageRugs(req.body.pagenum,(err, rugs) => {
+    if(err) throw err;
+    if(!rugs){
+      return res.json({success: false, msg: 'Rugs not found'});
+    }
+      if(err) throw err;
+        res.json({
+          success: true,
+          rugs_data:rugs
+        });
+
+  });
+});
+//----------------------
+
 
 
 router.delete('/deleterug/:rugid', (req, res, next) => {
@@ -114,11 +159,18 @@ router.delete('/deleterug/:rugid', (req, res, next) => {
             if (error) {
                 throw error;
             }
+        });
+        fs.unlink('./public_files/compress/'+rug.image, function(error) {
+            if (error) {
+                throw error;
+            }
             console.log('Rug Deleted.....');
         });
 
   });
 });
+
+
 router.post('/getrugs', (req, res, next) => {
 
   Rug.getRugs((err, rugs) => {
